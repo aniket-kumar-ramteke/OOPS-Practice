@@ -14,5 +14,8 @@ public class DepartmentMain {
         System.out.println(details1);
         System.out.println(details2);
         System.out.println(dept2.getDeptDetails());
+
+        dept2.changeName("Department of Prints");
+        System.out.println(dept2.getDeptDetails());
     }
 }

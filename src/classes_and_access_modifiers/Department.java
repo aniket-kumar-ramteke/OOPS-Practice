@@ -14,5 +14,9 @@ public class Department {
         String details = "Department No: " + deptNo + ", Name: " + name;
         return details;
     }
+
+    public void changeName(String name){
+        this.name = name;//this.name = newName
+    }
 }
 
