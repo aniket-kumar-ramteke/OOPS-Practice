@@ -1,0 +1,30 @@
+Exception Hierarchy:
+
+The topmost class in Exception Hierarchy is Throwable from java.lang
+
+It has 2 subclasses: Error and Exception
+
+1. Error:
+	It indicates resource exhaustion in JVM. It is rare but fatal. It is not under the
+	control of a developer. Eg - power-failure.
+
+2. Exception:
+	It is frequent but not fatal. It is under the control of a developer.
+
+Types of Exceptions:
+	Exceptions are divided into 2 types:
+
+		1. Unchecked Exceptions (Runtime Exceptions)
+			These are the exceptions for which compiler does not enforce to handle them.
+			These exceptions are expressed using a predefined class: RuntimeException
+			Any class descended from RuntimeException is a runtime exception or unchecked
+			exception.
+			E.g.
+				ArrayIndexOutOfBoundsException, NullPointerException etc.
+		2. Checked Exceptions
+			These are the exceptions for which compiler enforces to handle them otherwise
+			compilation error gets generated. (mandatory to handle)
+
+			Any class which is not a descendant of RuntimeException is a checked exception.
+			E.g.
+				FileNotFoundException
