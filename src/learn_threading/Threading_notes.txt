@@ -1,0 +1,57 @@
+Multithreading:
+
+What is Multitasking?
+Multitasking involves running multiple tasks simultaneously.
+
+Multitasking is having 2 forms:
+	1. Multiprocessing: Running multiple processes simultaneously.
+	2. Multithreading: Running multiple threads simultaneously.
+
+What is a Process?
+
+Program is a set of instructions and every running instance of a program is known as Process.
+
+Every process runs in its own address space and therefore the entire context including
+variables, global variables, objects etc. is stored separately.
+Therefore there is no sharing of data between 2 processes.
+
+OS implements Multitasking through Multiprocessing
+
+What is Thread?
+
+Thread is an entity within a process. It defines path of execution.
+Java implements Multitasking through Multithreading by taking it one level lower.
+Since multiple threads run within a same process, they may share same data.
+
+Every Java application has at least one thread: Main Thread
+
+Thread Life Cycle:
+
+	The life cycle of thread has several stages:
+
+	1.	BORN
+			When a thread is newly created, it is said to be in BORN state
+	2.	READY
+			When a thread becomes ready to run, it is said to be in READY state
+	3.	RUNNING
+			When thread's execution begins, it is said to be RUNNING state
+	4.	BLOCKED
+			At any time a thread might be sent into some blocking state.
+			In general it is referred as BLOCKED state.
+			There are several types of BLOCKED states:
+				SLEEPING
+				WAITING
+				BLOCKED for IO Request
+				SUSPENDED
+	5.	DEAD
+			When a thread is no longer available, it is said to be in DEAD state.
+			There are 3 possibilities under which a thread enters into DEAD state:
+				1. Completes its task
+				2. It is killed explicitly (forcefully)
+				3. It is killed due to uncaught exception
+
+For 1 CPU, 1 thread runs at a time. OS implements Context Switching algorithm.
+Therefore, it creates an impact of as if running multiple threads simultaneously.
+
+Every OS has its own algorithm that decides scheduling of thread. It is known as Scheduler.
+Therefore, the behaviour of multithreaded programs is Platform Dependent.
