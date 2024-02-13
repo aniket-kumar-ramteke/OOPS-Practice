@@ -55,3 +55,158 @@ Therefore, it creates an impact of as if running multiple threads simultaneously
 
 Every OS has its own algorithm that decides scheduling of thread. It is known as Scheduler.
 Therefore, the behaviour of multithreaded programs is Platform Dependent.
+
+Scheduling of Threads:
+
+Scheduling of Threads is done by OS specific algorithm known as Scheduler.
+The scheduler schedules threads based upon several factors:
+
+	1. Priority
+		It is possible to assign a priority for threads within the range (1 to 10)
+		being 1 as Min and 10 as Max. Thread class provides setPriority() method to
+		set the priority.
+
+		The default priority is taken as 5.
+
+	2. Time Slicing
+		Every thread is allowed to run for a specific time period. As soon as the time out
+		occurs, thread leaves RUNNING state and goes back to READ state.
+
+	3. Pre-empting
+		It combines 1st and 2nd. A higher priority thread may pre-empt lower priority thread.
+
+As soon as a thread acquires RUNNING state, a run() method for that thread gets
+invoked.
+
+Methods from Thread class:
+
+	Thread class provides several methods to handle thread related activities.
+
+	1. start()
+		Makes a request to OS for the creation of a thread. Once created, brings the
+		thread into READY state.
+
+	2. stop()
+		Kills the thread forcefully. Since it is not recommended, new versions of Java have
+		declared this method as DEPRECATED
+
+	3. sleep()
+		A static method that causes currently running thread to enter into SLEEPING state.
+
+	4. yield()
+		A static method that causes currently running thread to give up the control to some
+		other thread.
+
+		After yield() the current thread leaves RUNNING state and goes into READY state,
+
+	5. suspend()
+		Causes a thread to enter into SUSPENDED state.
+
+	6. resume()
+		Causes a thread to wake up from SUSPENDED state and enter into READY state.
+		Since it is implementation dependent, both these method are declared as DEPRECATED.
+
+	7. currentThread()
+		A static method that is used to obtain a handle to the currently running thread.
+
+	8. join()
+		A thread from which new threads are created, is called as Parent Thread and newly
+		created threads are called as Child Threads.
+
+		It is possible that a parent thread is finished but child thread is still alive.
+		Sometimes it is required to tell the main thread to continue only after the death
+		of child thread.
+
+		This is done using join() method. It causes the parent to wait until the  death of
+		the child thread on which it is invoked.
+
+Why run() method cannot add 'throws' declaration?
+
+Ans: When a super type method does not add 'throws', a sub type overridden method
+	 cannot add 'throws' because narrowing the scope is not possible.
+
+	But widening the scope is possible e.g. A super type method adds 'throws' but a sub
+	type overridden method does not add 'throws'.
+
+Synchronization:
+
+	Since multiple threads run within a single process, they may share same data.
+	Synchronization is a technique that comes into picture when threads are sharing	same data.
+
+	Sometimes it is necessary to put a restriction on accessing the object simultaneously.
+	If synchronization is not handled properly, threads enter into RACE condition and
+	this leads  to data inconsistency.
+
+Implementing Synchronization:
+
+	Key to synchronization is a monitor. A monitor is a mutually exclusive lock.
+	In synchronization, a thread that enters the monitor, is said to have acquired lock
+	on the object. Other threads have to wait until the lock is released by the current
+	thread.
+
+	To handle synchronization, Java provides a keyword: synchronized.
+	The keyword 'synchronized' is used to create synchronized context which is 	possible by 2 ways:
+
+			1. Using synchronized method
+
+			When a currently running thread invokes a method on an object and if the method
+			is declared as synchronized, then the thread acquires a lock on that object.
+
+			This ensures preventing access to that same object by other threads.
+			As soon as the control exits from the synchronized method, the lock gets released
+			automatically and it is available for other threads.
+
+
+			2. Using synchronized block
+
+			The object which is being shared, its class might have been defined by some
+			developer and the developer that creates a thread implementation class may
+			not have access to the source code of the class defined by 1st developer.
+
+			In this scenario, to handle synchronization, synchronized block is used.
+
+			The general form of synchronized block is :
+
+			synchronized(Object){
+				//Statements
+			}
+
+When 'synchronized' is used in case of methods?
+
+While defining a class, a developer can go on declaring all the methods of that class
+as 'synchronized' because developer wants to providing in-built functionality of
+synchronization to other developers.
+
+If this happens so, that class is called as synchronized class or a thread-safe class.
+
+E.g. java.lang.StringBuilder (Since JDK 1.5) is not thread-safe where as
+	java.lang.StringBuffer is  thread-safe
+
+Inter-thread Communication
+
+	When threads are sharing the information, they may have to interact with each other.
+	This is known as Inter-thread Communication.
+
+	To implement Inter-thread Communication, 3 methods are provided:
+		wait()
+		notify()
+		notifyAll()
+
+	These methods are defined by java.lang.Object and they are declared 'final'
+	They must be invoked within a synchronized context otherwise
+	IllegalMonitorStateException is raised.
+
+	wait()
+
+	It is used to release the lock explicitly. When invoked, releases the lock and sends
+	the currently running thread into WAITING state,
+
+	notify()
+
+	It is used to send the notification to the thread which is WAITING state. When
+	invoked, causes the thread to leave the WAITING state and go back to READY state.
+	It notifies a single thread
+
+	notifyAll()
+
+	It notifies all waiting threads.
